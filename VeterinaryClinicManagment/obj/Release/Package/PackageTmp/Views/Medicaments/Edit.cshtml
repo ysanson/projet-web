@@ -1,0 +1,27 @@
+﻿@model VeterinaryClinicManagment.Models.Medicament
+@{
+    ViewBag.Title = "Modification";
+}
+
+<h2>Modification de @Model.nomMedicament</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken();
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <fieldset>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.nomMedicament, new { @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.nomMedicament, new { @class = "mdl-textfield__label" })
+            @Html.ValidationMessageFor(model => model.nomMedicament, null, new { @class = "mdl-textfield__error" })
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.posologieMax, new { @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.posologieMax, new { @class = "mdl-textfield__label" })
+            @Html.ValidationMessageFor(model => model.posologieMax)
+        </div>
+    </fieldset>
+    <input type="submit" , value="Éditer" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" />
+    <input type="reset" , value="Reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" />
+}
+

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<VeterinaryClinicManagment.Models.Operation>
+@{
+    ViewBag.Title = "Index des opérations";
+}
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col">
+        <h2>Liste des opérations</h2>
+        <h4>Ci-dessous se trouvent tous les opérations partiquées dans la clinique.</h4>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--2-col">
+        <a href="@Url.Action("Create", "Operations")" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="CreateOp">
+            <i class="material-icons">add</i>
+            <div class="mdl-tooltip" data-mdl-for="CreateOp">
+                Créer
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayNameFor(model => model.label)
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var o in Model)
+            {
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        @Html.DisplayFor(modelR => o.label)
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        @Html.ActionLink("Éditer", "Edit", new { id = o.IdOperation }, new { @class = "mdl-navigation__link" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

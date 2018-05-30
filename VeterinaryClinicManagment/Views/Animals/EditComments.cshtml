@@ -1,0 +1,20 @@
+﻿@model VeterinaryClinicManagment.Models.Animal
+@{
+    ViewBag.Title = "Modification";
+}
+
+<h2>Modification du commentaire de @Model.nom</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Commentaires</legend>
+        <div class="mdl-textfield mdl-js-textfield">
+            @Html.TextAreaFor(model=>model.commentaire, new { @class="mdl-textfield__input" } )
+            @Html.LabelFor(model => model.commentaire, new { @class = "mdl-textfield__label" })
+        </div>
+    </fieldset>
+    <input type="submit" , value="Modifier" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" />
+}

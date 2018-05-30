@@ -1,0 +1,22 @@
+﻿@model VeterinaryClinicManagment.Models.Operation
+@{
+    ViewBag.Title = "Modification";
+}
+
+<h2>Modification de @Model.label</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken();
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <fieldset>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.label, new { @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.label, new { @class = "mdl-textfield__label" })
+            @Html.ValidationMessageFor(model => model.label, null, new { @class = "mdl-textfield__error" })
+        </div>
+    </fieldset>
+    <input type="submit" , value="Éditer" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" />
+    <input type="reset" , value="Reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" />
+}
+

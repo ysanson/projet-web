@@ -1,0 +1,48 @@
+﻿@model IEnumerable<VeterinaryClinicManagment.Models.Remarques>
+@{
+    ViewBag.Title = "Remarques";
+}
+
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col">
+        <h2>Toutes les remarques pour @ViewBag.DescAnimal</h2>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--2-col">
+        <a href="@Url.Action("Details", "Animals", new { id = int.Parse(ViewBag.ID) })" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="RetAnimal">
+            <i class="material-icons">edit</i>
+            <div class="mdl-tooltip" data-mdl-for="RetAnimal">
+                Retour à l'animal'
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayNameFor(model => model.dateRemarque)
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayNameFor(model => model.contenuRemarque)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var r in Model)
+            {
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(m => r.dateRemarque)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(m => r.contenuRemarque)
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

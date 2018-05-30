@@ -1,0 +1,121 @@
+﻿@model VeterinaryClinicManagment.ViewModels.AnimalViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col">
+        <h2 style="display:inline;">Détails pour l'animal @Model.animal.nom</h2>
+        <button id="AnimalActions" class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">more_vert</i>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="AnimalActions">
+            <li class="mdl-menu__item mdl-menu__item--full-bleed-divider" onclick="document.location='@Url.Action("MedicalReport", new { id = Model.animal.IdAnimal})'">Rapport médical</li>
+            @if (HttpContext.Current.User.IsInRole("Veterinary"))
+            {
+                <li class="mdl-menu__item" onclick="document.location='@Url.Action("Create", "Consultations", new { id = Model.animal.IdAnimal})'">Nouvelle consultation</li>
+                <li class="mdl-menu__item" onclick="document.location='@Url.Action("Create", "OperationsPassed", new { id = Model.animal.IdAnimal})'">Nouvelle opération</li>
+
+            }
+        </ul>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--2-col">
+        <a href="@Url.Action("EditComments", "Animals", new { id = Model.animal.IdAnimal })" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="EditAnimal">
+            <i class="material-icons">edit</i>
+            <div class="mdl-tooltip" data-mdl-for="EditAnimal">
+                Modifier
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col">
+        <h3>Général</h3>
+        <dl class="mdl-list">
+            @if (HttpContext.Current.User.IsInRole("Veterinary"))
+            {
+                <dt>Client lié</dt>
+                <dd class="mdl-list__item">
+                    @Html.DisplayFor(model => model.user.nom) @Html.DisplayFor(model => model.user.prenom) | 
+                    @Html.ActionLink("Voir le client", "Details", "Clients", new { id = Model.user.IdUtilisateur }, new { @class = "mdl-button mdl-js-button mdl-button--primary" })
+                </dd>
+            }
+                <dt>
+                    @Html.DisplayNameFor(model => model.animal.nom) et @Html.DisplayNameFor(model => model.species.esprace)
+                </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.animal.nom) (@Html.DisplayFor(model => model.species.esprace))
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.animal.sexe)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.animal.sexe)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.animal.commentaire)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.animal.commentaire)
+            </dd>
+        </dl>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        @if (Model.pds != null)
+        {
+            <h3>Dernier poids enregistré</h3>
+            <dl class="mdl-list">
+                <dt>
+                    Date
+                </dt>
+                <dd class="mdl-list__item">
+                    @Html.DisplayFor(model => model.pds.dateSuivi)
+                </dd>
+                <dt>
+                    Poids enregistré
+                </dt>
+                <dd class="mdl-list__item">
+                    @Html.DisplayFor(model => model.pds.poids) kg
+                </dd>
+            </dl>
+        }
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        @if (Model.lastRem != null)
+        {
+            <h3>Dernière remarque</h3>
+            <ul class="mdl-list">
+                <li class="mdl-list__item">
+                    @Html.DisplayFor(model => model.lastRem.dateRemarque)
+                </li>
+                <li class="mdl-list__item">
+                    @Html.DisplayFor(model => model.lastRem.contenuRemarque)
+                </li>
+            </ul>
+            @Html.ActionLink("Toutes les remarques", "RemarksForAnimal", "Remarks", new { id = Model.animal.IdAnimal }, new { @class = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" })
+
+        }
+    </div>
+</div>
+
+<div class="mdl-grid">
+    @if (HttpContext.Current.User.IsInRole("Veterinary"))
+    {
+        <div class="mdl-cell mdl-cell--4-col">
+            @{
+                Html.RenderAction("Create", "Remarks", new { id = Model.animal.IdAnimal });
+            }
+        </div>
+    }
+    <div class="mdl-cell mdl-cell--4-col">
+        <h3>Graphique de suivi du poids</h3>
+        <img src="@Url.Action("GraphForAnimal", "SuiviPds", new {id=Model.animal.IdAnimal})" />
+    </div>
+    <div class="mdl-cell mdl-cell--2-col">
+        @{
+            Html.RenderAction("Create", "SuiviPds", new { id = Model.animal.IdAnimal });
+        }
+    </div>
+</div>

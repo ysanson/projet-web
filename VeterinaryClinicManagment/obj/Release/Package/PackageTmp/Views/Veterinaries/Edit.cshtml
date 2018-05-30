@@ -1,0 +1,79 @@
+﻿@model VeterinaryClinicManagment.Models.Utilisateur
+@{
+    ViewBag.Title = "Édition";
+}
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col">
+        <h2>Édition du vétérinaire @Model.nom @Model.prenom</h2>
+        @if (ViewData["InUse"] != null)
+        {
+            <span class="mdl-textfield__error">@ViewData["InUse"]</span>
+        }
+        @if (ViewData["DBError"] != null)
+        {
+            <span class="mdl-textfield__error">@ViewData["DBError"]</span>
+        }
+    </div>
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--2-col">
+        @if (int.Parse(HttpContext.Current.User.Identity.Name) == Model.IdUtilisateur)
+        {
+            <a href="@Url.Action("EditPassword", "Veterinaries", new {id=Model.IdUtilisateur})" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="LoginInfo">
+                <i class="material-icons">security</i>
+                <div class="mdl-tooltip" data-mdl-for="LoginInfo">
+                    Modifier le mot de passe
+                </div>
+            </a>
+        }
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Informations générales</legend>
+        <em>Cette section est obligatoire.</em><br />
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.nom, new { @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.nom, new { @class = "mdl-textfield__label" })
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.prenom, new { @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.prenom, new { @class = "mdl-textfield__label" })
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Informations de contact</legend>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.tel, new { type = "tel", @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.tel, new { @class = "mdl-textfield__label" })
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.mail, new { type = "email", @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.mail, new { @class = "mdl-textfield__label" })
+            <span class="mdl-textfield__error">Ce n'est pas un email valide.</span>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Adresse</legend>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.adresse, new { @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.adresse, new { @class = "mdl-textfield__label" })
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.ville, new { @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.ville, new { @class = "mdl-textfield__label" })
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.codePostal, new { type = "text", pattern = "^(([0-8][0-9])|(9[0-5])|(2[ab]))[0-9]{3}$", @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.codePostal, new { @class = "mdl-textfield__label" })
+            <span class="mdl-textfield__error">Veuillez entrer un code postal valide.</span>
+        </div>
+    </fieldset>
+    <input type="hidden" name="_METHOD" value="PUT" />
+    <input id="Modif" type="submit" , value="Éditer" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" />
+    <input type="reset" , value="Reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" />
+}
+

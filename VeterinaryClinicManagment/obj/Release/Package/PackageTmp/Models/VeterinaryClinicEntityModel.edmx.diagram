@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b1d2d996844d4b1eb76edcd2d2649cd1" Name="Diagram1">
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Animal" Width="1.5" PointX="9.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Consultation" Width="1.5" PointX="0.875" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Espece" Width="1.5" PointX="12.125" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Medicament" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Operation" Width="1.5" PointX="7.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Passe" Width="1.5" PointX="4.5" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.PrescConsultation" Width="1.5" PointX="2.875" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Remarques" Width="1.5" PointX="12.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.SuiviPoids" Width="1.5" PointX="7.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.sysdiagrams" Width="1.5" PointX="13.125" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Utilisateur" Width="1.5" PointX="0.5" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK_ANIMAL_idEspece" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK_ANIMAL_IdUtilisateur" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK_CONSULTATION_IdAnimal" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK_PASSE_IdAnimal" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK_REMARQUES_IdAnimal" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK_SUIVI_PDS_IdAnimal" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK_CONSULTATION_IdUtilisateur" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK_PRESC_CONS_idObservation" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK_PRESC_CONS_idMedicament" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK_PASSE_IdOperation" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK_PASSE_IdUtilisateur" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

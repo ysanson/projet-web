@@ -1,0 +1,136 @@
+﻿@model VeterinaryClinicManagment.ViewModels.ClientViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col">
+        <h2>Détails pour le client @Model.client.nom @Model.client.prenom</h2>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--2-col">
+        <a href="@Url.Action("Edit", "Clients", new { id = Model.client.IdUtilisateur })" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="EditClient">
+            <i class="material-icons">edit</i>
+            <div class="mdl-tooltip" data-mdl-for="EditClient">
+                Modifier
+            </div>
+        </a>
+    </div>
+</div>
+
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--2-col">
+        <h3>Général</h3>
+        <dl class="mdl-list">
+            <dt>
+                @Html.DisplayNameFor(model => model.client.nom)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.client.nom)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.client.prenom)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.client.prenom)
+            </dd>
+        </dl>
+    </div>
+    <div class="mdl-cell mdl-cell--2-col">
+        <h3>Contacts</h3>
+        <dl class="mdl-list">
+            <dt>
+                @Html.DisplayNameFor(model => model.client.tel)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.client.tel)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.client.mail)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.client.mail)
+            </dd>
+        </dl>
+    </div>
+    <div class="mdl-cell mdl-cell--2-col">
+        <h3>Adresse</h3>
+        <dl class="mdl-list">
+            <dt>
+                @Html.DisplayNameFor(model => model.client.adresse)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.client.adresse)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.client.codePostal)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.client.codePostal)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.client.ville)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.client.ville)
+            </dd>
+        </dl>
+    </div>
+    <div class="mdl-cell mdl-cell--6-col">
+        <div class="table-responsive">
+            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric">
+                            Nom
+                        </th>
+                        <th class="mdl-data-table__cell--non-numeric">
+                            Sexe
+                        </th>
+                        <th class="mdl-data-table__cell--non-numeric">
+                            Date de naissance
+                        </th>
+                        <th class="mdl-data-table__cell--non-numeric">
+                            Espèce
+                        </th>
+                        <th class="mdl-data-table__cell--non-numeric">
+                            Race
+                        </th>
+                        <th class="mdl-data-table__cell--non-numeric">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var animal in Model.clientsPets)
+                    {
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                @Html.DisplayFor(an => animal.animal.nom)
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                @Html.DisplayFor(an => animal.animal.sexe)
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                @Html.DisplayFor(an => animal.animal.dateNaissance)
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                @Html.DisplayFor(an => animal.species.espece)
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                @Html.DisplayFor(an => animal.species.race)
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                @Html.ActionLink("Éditer", "EditComments", "Animals", new { id = animal.animal.IdAnimal }, new { @class = "mdl-navigation__link" }) |
+                                @Html.ActionLink("Consulter", "Details", "Animals", new { id = animal.animal.IdAnimal }, new { @class = "mdl-navigation__link" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

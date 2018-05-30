@@ -1,0 +1,62 @@
+﻿@model VeterinaryClinicManagment.Models.Consultation
+@{
+    ViewBag.Title = "Modification";
+}
+
+<h2>Modification de la consultation numéro @Model.idObservation</h2>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col">
+        @using (Html.BeginForm())
+        {
+            @Html.HttpMethodOverride(HttpVerbs.Put)
+            @Html.AntiForgeryToken()
+            <fieldset>
+                <legend>Informations générales</legend>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    @Html.TextAreaFor(model => model.description, new { rows = "5", @class = "mdl-textfield__input" })
+                    @Html.LabelFor(model => model.description, new { @class = "mdl-textfield__label" })
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Compte rendu</legend>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    @Html.TextAreaFor(model => model.examenClinique, new { rows = "5", @class = "mdl-textfield__input" })
+                    @Html.LabelFor(model => model.examenClinique, new { @class = "mdl-textfield__label" })
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    @Html.TextAreaFor(model => model.diagnostic, new { rows = "5", @class = "mdl-textfield__input" })
+                    @Html.LabelFor(model => model.diagnostic, new { @class = "mdl-textfield__label" })
+                </div>
+            </fieldset>
+            <fieldset>
+                @Html.HiddenFor(model => model.IdUtilisateur)
+                @Html.HiddenFor(model => model.IdAnimal)
+                @Html.HiddenFor(model => model.dateObs)
+                @Html.HiddenFor(model => model.idObservation)
+            </fieldset>
+            <input type="submit" , value="Créer" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" />
+        }
+    </div>
+    <div class="mdl-cell mdl-cell--6-col">
+        <h5>Nouvelle prescription</h5>
+        @{
+            Html.RenderAction("Create", "PrescConsult", new { id = Model.idObservation });
+        }
+        <br />
+        <div id="tableauPresc">
+            @{
+                Html.RenderAction("DetailsForConsult", "PrescConsult", new { id = Model.idObservation });
+            }
+        </div>
+        <br />
+        @Ajax.ActionLink("Actualiser la liste", "DetailsForConsult", "PrescConsult", new { id = Model.idObservation }, new AjaxOptions
+   {
+       UpdateTargetId= "tableauPresc",
+       HttpMethod="GET"
+   }, new { @class = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" })
+    </div>
+</div>
+
+
+

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<VeterinaryClinicManagment.ViewModels.OperationViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col">
+        <h2>Index des opérations passées</h2>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--2-col">
+        <a href="@Url.Action("Create", "OperationsPassed")" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="CreateConsult">
+            <i class="material-icons">add</i>
+            <div class="mdl-tooltip" data-mdl-for="CreateConsult">
+                Créer
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">
+                    Numéro
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    Date
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    Opération
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    Nom du vétérinaire
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    Nom de l'animal
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    Espèce, race
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    Nom du client
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var op in Model)
+            {
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(o => op.operation.IdOperation)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(o => op.passing.DateOp)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(o => op.operation.label)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(o => op.vet.nom) @Html.DisplayFor(o => op.vet.prenom)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(o => op.animal.animal.nom)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(o => op.animal.species.esprace)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(o => op.animal.user.nom) @Html.DisplayFor(o => op.animal.user.prenom)
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

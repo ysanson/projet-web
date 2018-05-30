@@ -1,0 +1,86 @@
+﻿@model IEnumerable<VeterinaryClinicManagment.Models.Utilisateur>
+@{
+    ViewBag.Title = "Index des vétérinaires";
+}
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col">
+        <h2>Index</h2>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--2-col">
+        <a href="@Url.Action("Create", "Veterinaries")" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="CreateClient">
+            <i class="material-icons">add</i>
+            <div class="mdl-tooltip" data-mdl-for="CreateClient">
+                Créer
+            </div>
+        </a>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table table-hover mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayNameFor(model => model.nom)
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayNameFor(model => model.prenom)
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayNameFor(model => model.tel)
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayNameFor(model => model.mail)
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayNameFor(model => model.adresse)
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayNameFor(model => model.codePostal)
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayNameFor(model => model.ville)
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    Actions
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(modelItem => item.nom)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(modelItem => item.prenom)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(modelItem => item.tel)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(modelItem => item.mail)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(modelItem => item.adresse)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(modelItem => item.codePostal)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(modelItem => item.ville)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.ActionLink("Éditer", "Edit", new { id = item.IdUtilisateur }, new { @class = "mdl-navigation__link" }) |
+                    @Html.ActionLink("Consulter", "Details", new { id = item.IdUtilisateur }, new { @class = "mdl-navigation__link" }) |
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.IdUtilisateur }, new { @class = "mdl-navigation__link" })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

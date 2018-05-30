@@ -1,0 +1,34 @@
+﻿@model VeterinaryClinicManagment.Models.Espece
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Modification de @Model.espece, @Model.race</h2>
+
+@if (ViewData["InUse"] != null)
+{
+    <span class="mdl-textfield__error">@ViewData["InUse"]</span>
+}
+@if (ViewData["DBError"] != null)
+{
+    <span class="mdl-textfield__error">@ViewData["DBError"]</span>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <fieldset>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.espece, new { @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.espece, new { @class = "mdl-textfield__label" })
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.race, new { @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.race, new { @class = "mdl-textfield__label" })
+        </div>
+    </fieldset>
+    <input type="submit" , value="Créer" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" />
+    <input type="reset" , value="Reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" />
+}
+

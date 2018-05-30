@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VeterinaryClinicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Animal">
+    <Key>
+      <PropertyRef Name="IdAnimal" />
+    </Key>
+    <Property Name="IdAnimal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="sexe" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="commentaire" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="dateNaissance" Type="DateTime" Precision="3" />
+    <Property Name="IdUtilisateur" Type="Int32" Nullable="false" />
+    <Property Name="idEspece" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Espece" Relationship="Self.FK_ANIMAL_idEspece" FromRole="Animal" ToRole="Espece" />
+    <NavigationProperty Name="Utilisateur" Relationship="Self.FK_ANIMAL_IdUtilisateur" FromRole="Animal" ToRole="Utilisateur" />
+    <NavigationProperty Name="Consultation" Relationship="Self.FK_CONSULTATION_IdAnimal" FromRole="Animal" ToRole="Consultation" />
+    <NavigationProperty Name="Passe" Relationship="Self.FK_PASSE_IdAnimal" FromRole="Animal" ToRole="Passe" />
+    <NavigationProperty Name="Remarques" Relationship="Self.FK_REMARQUES_IdAnimal" FromRole="Animal" ToRole="Remarques" />
+    <NavigationProperty Name="SuiviPoids" Relationship="Self.FK_SUIVI_PDS_IdAnimal" FromRole="Animal" ToRole="SuiviPoids" />
+  </EntityType>
+  <EntityType Name="Consultation">
+    <Key>
+      <PropertyRef Name="idObservation" />
+    </Key>
+    <Property Name="idObservation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dateObs" Type="DateTime" Precision="3" />
+    <Property Name="IdAnimal" Type="Int32" Nullable="false" />
+    <Property Name="IdUtilisateur" Type="Int32" Nullable="false" />
+    <Property Name="examenClinique" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="diagnostic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Animal" Relationship="Self.FK_CONSULTATION_IdAnimal" FromRole="Consultation" ToRole="Animal" />
+    <NavigationProperty Name="Utilisateur" Relationship="Self.FK_CONSULTATION_IdUtilisateur" FromRole="Consultation" ToRole="Utilisateur" />
+    <NavigationProperty Name="PrescConsultation" Relationship="Self.FK_PRESC_CONS_idObservation" FromRole="Consultation" ToRole="PrescConsultation" />
+  </EntityType>
+  <EntityType Name="Espece">
+    <Key>
+      <PropertyRef Name="idEspece" />
+    </Key>
+    <Property Name="idEspece" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="espece" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="race" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="esprace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Animal" Relationship="Self.FK_ANIMAL_idEspece" FromRole="Espece" ToRole="Animal" />
+  </EntityType>
+  <EntityType Name="Medicament">
+    <Key>
+      <PropertyRef Name="idMedicament" />
+    </Key>
+    <Property Name="idMedicament" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomMedicament" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="posologieMax" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PrescConsultation" Relationship="Self.FK_PRESC_CONS_idMedicament" FromRole="Medicament" ToRole="PrescConsultation" />
+  </EntityType>
+  <EntityType Name="Operation">
+    <Key>
+      <PropertyRef Name="IdOperation" />
+    </Key>
+    <Property Name="IdOperation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="label" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Passe" Relationship="Self.FK_PASSE_IdOperation" FromRole="Operation" ToRole="Passe" />
+  </EntityType>
+  <EntityType Name="Passe">
+    <Key>
+      <PropertyRef Name="IdAnimal" />
+      <PropertyRef Name="IdOperation" />
+      <PropertyRef Name="IdUtilisateur" />
+    </Key>
+    <Property Name="DateOp" Type="DateTime" Precision="3" />
+    <Property Name="CompteRenduOP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IdAnimal" Type="Int32" Nullable="false" />
+    <Property Name="IdOperation" Type="Int32" Nullable="false" />
+    <Property Name="IdUtilisateur" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Animal" Relationship="Self.FK_PASSE_IdAnimal" FromRole="Passe" ToRole="Animal" />
+    <NavigationProperty Name="Operation" Relationship="Self.FK_PASSE_IdOperation" FromRole="Passe" ToRole="Operation" />
+    <NavigationProperty Name="Utilisateur" Relationship="Self.FK_PASSE_IdUtilisateur" FromRole="Passe" ToRole="Utilisateur" />
+  </EntityType>
+  <EntityType Name="PrescConsultation">
+    <Key>
+      <PropertyRef Name="idObservation" />
+      <PropertyRef Name="idMedicament" />
+    </Key>
+    <Property Name="posologie" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="idObservation" Type="Int32" Nullable="false" />
+    <Property Name="idMedicament" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Consultation" Relationship="Self.FK_PRESC_CONS_idObservation" FromRole="PrescConsultation" ToRole="Consultation" />
+    <NavigationProperty Name="Medicament" Relationship="Self.FK_PRESC_CONS_idMedicament" FromRole="PrescConsultation" ToRole="Medicament" />
+  </EntityType>
+  <EntityType Name="Remarques">
+    <Key>
+      <PropertyRef Name="idRemarques" />
+    </Key>
+    <Property Name="idRemarques" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dateRemarque" Type="DateTime" Precision="3" />
+    <Property Name="contenuRemarque" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IdAnimal" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Animal" Relationship="Self.FK_REMARQUES_IdAnimal" FromRole="Remarques" ToRole="Animal" />
+  </EntityType>
+  <EntityType Name="SuiviPoids">
+    <Key>
+      <PropertyRef Name="idSuivi" />
+    </Key>
+    <Property Name="idSuivi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dateSuivi" Type="DateTime" Precision="3" />
+    <Property Name="poids" Type="Double" />
+    <Property Name="IdAnimal" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Animal" Relationship="Self.FK_SUIVI_PDS_IdAnimal" FromRole="SuiviPoids" ToRole="Animal" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Utilisateur">
+    <Key>
+      <PropertyRef Name="IdUtilisateur" />
+    </Key>
+    <Property Name="IdUtilisateur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prenom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="tel" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="mail" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="adresse" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ville" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="codePostal" Type="Int32" />
+    <Property Name="estVeto" Type="Boolean" Nullable="false" />
+    <Property Name="salt" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Animal" Relationship="Self.FK_ANIMAL_IdUtilisateur" FromRole="Utilisateur" ToRole="Animal" />
+    <NavigationProperty Name="Consultation" Relationship="Self.FK_CONSULTATION_IdUtilisateur" FromRole="Utilisateur" ToRole="Consultation" />
+    <NavigationProperty Name="Passe" Relationship="Self.FK_PASSE_IdUtilisateur" FromRole="Utilisateur" ToRole="Passe" />
+  </EntityType>
+  <Association Name="FK_ANIMAL_idEspece">
+    <End Role="Espece" Type="Self.Espece" Multiplicity="1" />
+    <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Espece">
+        <PropertyRef Name="idEspece" />
+      </Principal>
+      <Dependent Role="Animal">
+        <PropertyRef Name="idEspece" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ANIMAL_IdUtilisateur">
+    <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+    <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Utilisateur">
+        <PropertyRef Name="IdUtilisateur" />
+      </Principal>
+      <Dependent Role="Animal">
+        <PropertyRef Name="IdUtilisateur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONSULTATION_IdAnimal">
+    <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
+    <End Role="Consultation" Type="Self.Consultation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="IdAnimal" />
+      </Principal>
+      <Dependent Role="Consultation">
+        <PropertyRef Name="IdAnimal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PASSE_IdAnimal">
+    <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
+    <End Role="Passe" Type="Self.Passe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="IdAnimal" />
+      </Principal>
+      <Dependent Role="Passe">
+        <PropertyRef Name="IdAnimal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REMARQUES_IdAnimal">
+    <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
+    <End Role="Remarques" Type="Self.Remarques" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="IdAnimal" />
+      </Principal>
+      <Dependent Role="Remarques">
+        <PropertyRef Name="IdAnimal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SUIVI_PDS_IdAnimal">
+    <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
+    <End Role="SuiviPoids" Type="Self.SuiviPoids" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="IdAnimal" />
+      </Principal>
+      <Dependent Role="SuiviPoids">
+        <PropertyRef Name="IdAnimal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONSULTATION_IdUtilisateur">
+    <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+    <End Role="Consultation" Type="Self.Consultation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Utilisateur">
+        <PropertyRef Name="IdUtilisateur" />
+      </Principal>
+      <Dependent Role="Consultation">
+        <PropertyRef Name="IdUtilisateur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRESC_CONS_idObservation">
+    <End Role="Consultation" Type="Self.Consultation" Multiplicity="1" />
+    <End Role="PrescConsultation" Type="Self.PrescConsultation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Consultation">
+        <PropertyRef Name="idObservation" />
+      </Principal>
+      <Dependent Role="PrescConsultation">
+        <PropertyRef Name="idObservation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRESC_CONS_idMedicament">
+    <End Role="Medicament" Type="Self.Medicament" Multiplicity="1" />
+    <End Role="PrescConsultation" Type="Self.PrescConsultation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medicament">
+        <PropertyRef Name="idMedicament" />
+      </Principal>
+      <Dependent Role="PrescConsultation">
+        <PropertyRef Name="idMedicament" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PASSE_IdOperation">
+    <End Role="Operation" Type="Self.Operation" Multiplicity="1" />
+    <End Role="Passe" Type="Self.Passe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operation">
+        <PropertyRef Name="IdOperation" />
+      </Principal>
+      <Dependent Role="Passe">
+        <PropertyRef Name="IdOperation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PASSE_IdUtilisateur">
+    <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+    <End Role="Passe" Type="Self.Passe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Utilisateur">
+        <PropertyRef Name="IdUtilisateur" />
+      </Principal>
+      <Dependent Role="Passe">
+        <PropertyRef Name="IdUtilisateur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VeterinaryClinicEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Animal" EntityType="Self.Animal" />
+    <EntitySet Name="Consultation" EntityType="Self.Consultation" />
+    <EntitySet Name="Espece" EntityType="Self.Espece" />
+    <EntitySet Name="Medicament" EntityType="Self.Medicament" />
+    <EntitySet Name="Operation" EntityType="Self.Operation" />
+    <EntitySet Name="Passe" EntityType="Self.Passe" />
+    <EntitySet Name="PrescConsultation" EntityType="Self.PrescConsultation" />
+    <EntitySet Name="Remarques" EntityType="Self.Remarques" />
+    <EntitySet Name="SuiviPoids" EntityType="Self.SuiviPoids" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" />
+    <AssociationSet Name="FK_ANIMAL_idEspece" Association="Self.FK_ANIMAL_idEspece">
+      <End Role="Espece" EntitySet="Espece" />
+      <End Role="Animal" EntitySet="Animal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ANIMAL_IdUtilisateur" Association="Self.FK_ANIMAL_IdUtilisateur">
+      <End Role="Utilisateur" EntitySet="Utilisateur" />
+      <End Role="Animal" EntitySet="Animal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONSULTATION_IdAnimal" Association="Self.FK_CONSULTATION_IdAnimal">
+      <End Role="Animal" EntitySet="Animal" />
+      <End Role="Consultation" EntitySet="Consultation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PASSE_IdAnimal" Association="Self.FK_PASSE_IdAnimal">
+      <End Role="Animal" EntitySet="Animal" />
+      <End Role="Passe" EntitySet="Passe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REMARQUES_IdAnimal" Association="Self.FK_REMARQUES_IdAnimal">
+      <End Role="Animal" EntitySet="Animal" />
+      <End Role="Remarques" EntitySet="Remarques" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SUIVI_PDS_IdAnimal" Association="Self.FK_SUIVI_PDS_IdAnimal">
+      <End Role="Animal" EntitySet="Animal" />
+      <End Role="SuiviPoids" EntitySet="SuiviPoids" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONSULTATION_IdUtilisateur" Association="Self.FK_CONSULTATION_IdUtilisateur">
+      <End Role="Utilisateur" EntitySet="Utilisateur" />
+      <End Role="Consultation" EntitySet="Consultation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRESC_CONS_idObservation" Association="Self.FK_PRESC_CONS_idObservation">
+      <End Role="Consultation" EntitySet="Consultation" />
+      <End Role="PrescConsultation" EntitySet="PrescConsultation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRESC_CONS_idMedicament" Association="Self.FK_PRESC_CONS_idMedicament">
+      <End Role="Medicament" EntitySet="Medicament" />
+      <End Role="PrescConsultation" EntitySet="PrescConsultation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PASSE_IdOperation" Association="Self.FK_PASSE_IdOperation">
+      <End Role="Operation" EntitySet="Operation" />
+      <End Role="Passe" EntitySet="Passe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PASSE_IdUtilisateur" Association="Self.FK_PASSE_IdUtilisateur">
+      <End Role="Utilisateur" EntitySet="Utilisateur" />
+      <End Role="Passe" EntitySet="Passe" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

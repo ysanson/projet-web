@@ -1,0 +1,53 @@
+﻿@model IEnumerable<VeterinaryClinicManagment.Models.Espece>
+@{
+    ViewBag.Title = "Index des espèces";
+}
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col">
+        <h2>Liste des espèces</h2>
+        <h4>Ci-dessous se trouvent toutes les espèces d'animaux ainsi que les races traitées par la clinique.</h4>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--2-col">
+        <a href="@Url.Action("Create", "Species")" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="CreateClient">
+            <i class="material-icons">add</i>
+            <div class="mdl-tooltip" data-mdl-for="CreateClient">
+                Créer
+            </div>
+        </a>
+    </div>
+</div>
+
+
+<div class="table-responsive">
+    <table class="table table-hover mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayNameFor(model=>model.espece)
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayNameFor(model=>model.race)
+                </th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var r in Model)
+            {
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        @Html.DisplayFor(modelR=>r.espece)
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        @Html.DisplayFor(modelR=>r.race)
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        @Html.ActionLink("Éditer", "Edit", new { id=r.idEspece}, new { @class = "mdl-navigation__link" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

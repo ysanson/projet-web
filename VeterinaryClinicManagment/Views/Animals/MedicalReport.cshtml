@@ -1,0 +1,73 @@
+﻿@model VeterinaryClinicManagment.ViewModels.MedicalReportViewModel
+@{
+    ViewBag.Title = "Rapport médical";
+}
+
+<h2>Rapport médical</h2>
+<h5>Ci-dessous se trouvent la dernière consultation et la dernière opération passée par l'animal @Model.animal.nom</h5>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col">
+        <h3>Dernière consultation</h3>
+        @if (Model.lastConsult != null)
+        {
+            <dl class="mdl-list">
+                <dt>@Html.DisplayNameFor(model => model.lastConsult.dateObs)</dt>
+                <dd class="mdl-list__item">
+                    @Html.DisplayFor(model => model.lastConsult.dateObs)
+                </dd>
+                <dt>@Html.DisplayNameFor(model => model.lastConsult.IdUtilisateur)</dt>
+                <dd class="mdl-list__item">
+                    @Html.DisplayFor(model => model.vetForConsult.nom) @Html.DisplayFor(model => model.vetForConsult.prenom)
+                </dd>
+                <dt>@Html.DisplayNameFor(model => model.lastConsult.description)</dt>
+                <dd class="mdl-list__item">
+                    @Html.DisplayFor(model => model.lastConsult.description)
+                </dd>
+                <dt>@Html.DisplayNameFor(model => model.lastConsult.examenClinique)</dt>
+                <dd class="mdl-list__item">
+                    @Html.DisplayFor(model => model.lastConsult.examenClinique)
+                </dd>
+                <dt>@Html.DisplayNameFor(model => model.lastConsult.diagnostic)</dt>
+                <dd class="mdl-list__item">
+                    @Html.DisplayFor(model => model.lastConsult.diagnostic)
+                </dd>
+            </dl>
+            <h5>Prescriptions</h5>
+            Html.RenderAction("DetailsForConsult", "PrescConsult", new { id = Model.lastConsult.idObservation });
+        }
+        else
+        {
+            <em>Aucune consultation recensée.</em>
+        }
+    </div>
+    <div class="mdl-cell mdl-cell--6-col">
+        <h3>Dernière opération</h3>
+        @if (Model.lastOp != null)
+        {
+        <dl class="mdl-list">
+            <dt>@Html.DisplayNameFor(model => model.lastOp.DateOp)</dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.lastOp.DateOp)
+            </dd>
+            <dt>@Html.DisplayNameFor(model => model.lastOp.IdUtilisateur)</dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.vetForOp.nom) @Html.DisplayFor(model => model.vetForOp.prenom)
+            </dd>
+            <dt>@Html.DisplayNameFor(model => model.lastOp.IdOperation)</dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.operationPassed.label)
+            </dd>
+            <dt>@Html.DisplayNameFor(model => model.lastOp.CompteRenduOP)</dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.lastOp.CompteRenduOP)
+            </dd>
+        </dl>
+        }
+        else
+        {
+            <em>Aucune opération recensée.</em>
+        }
+    </div>
+</div>
+

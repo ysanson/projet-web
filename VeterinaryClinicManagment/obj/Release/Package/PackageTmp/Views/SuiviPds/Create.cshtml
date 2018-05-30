@@ -1,0 +1,20 @@
+﻿@model VeterinaryClinicManagment.Models.SuiviPoids
+
+<h5>Nouveau poids</h5>
+<span>@ViewBag.Success</span>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <em>Le poids est en kg, à rentrer sous la forme x,y</em><br />
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.poids, new { @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.poids, new { @class = "mdl-textfield__label" })
+        </div>
+    </fieldset>
+    <fieldset>
+        @Html.HiddenFor(model => model.IdAnimal)
+        @Html.HiddenFor(model => model.dateSuivi)
+    </fieldset>
+    <input type="submit" , value="Créer" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" />
+}

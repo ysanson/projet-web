@@ -1,0 +1,44 @@
+﻿@model VeterinaryClinicManagment.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "Connexion";
+}
+
+<h2>Connexion</h2>
+@if (Model.auth)
+{
+    <h3>Vous êtes déjà connecté avec le login : @Model.user.mail </h3>
+    @Html.ActionLink("Déconnexion", "SignOut", null, null, new { @class = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" })
+}
+else
+{
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--1-col"></div>
+        <div class="mdl-cell mdl-cell--6-col">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken();
+                <fieldset>
+                    <legend>Authentification @Html.ValidationMessageFor(model => model.user.mail)</legend>
+
+                    <div class="mdl-textfield mdl-js-textfield">
+                        @Html.TextBoxFor(model => model.user.mail, new { @class = "mdl-textfield__input" })
+                        @Html.LabelFor(model => model.user.mail, new { @class = "mdl-textfield__label" })
+                    </div>
+                    <br />
+                    <div class="mdl-textfield mdl-js-textfield">
+                        @Html.PasswordFor(model => model.user.password, new { @class = "mdl-textfield__input" })
+                        @Html.LabelFor(model => model.user.password, new { @class = "mdl-textfield__label" })
+                        @Html.ValidationMessageFor(model => model.user.password)
+                    </div>
+                    <br />
+                </fieldset>
+                <input type="submit" , value="Connexion" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" />
+            }
+        </div>
+        <div class="mdl-cell mdl-cell--1-col"></div>
+        <div class="mdl-cell mdl-cell--4-col">
+            @Html.ActionLink("Créer un compte client", "Create", "Clients", null, new { @class = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" })
+        </div>
+    </div>
+   
+}

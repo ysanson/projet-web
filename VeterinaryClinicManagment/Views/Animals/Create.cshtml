@@ -1,0 +1,55 @@
+﻿@model VeterinaryClinicManagment.Models.Animal
+@{
+    ViewBag.Title = "Création d'un animal";
+}
+
+<h2>Création d'un nouvel animal</h2>
+@if (ViewData["DBError"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>@ViewData["DBError"]</strong>
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Informations générales</legend>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.nom, new { @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.nom, new { @class = "mdl-textfield__label" })
+            @Html.ValidationMessageFor(model => model.nom,null, new { @class= "mdl-textfield__error" })
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.LabelFor(model => model.sexe)
+            @Html.DropDownList("sexe", null, "Choisir...", new { @class = "mdl-textfield__input" })
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.LabelFor(model => model.dateNaissance)
+            @Html.TextBoxFor(model => model.dateNaissance, new { type = "date", @class = "mdl-textflield__label" })
+            <span class= "mdl-textfield__error">@ViewData["DateNError"]</span>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.LabelFor(model => model.idEspece)
+            @Html.DropDownList("idEspece", null, "Choisir...", new { @class = "mdl-textfield__input" })
+        </div>
+        @Html.ActionLink("Nouvelle espèce ou race", "Create", "Species", null, new { @class = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" })
+    </fieldset>
+    <fieldset>
+        <legend>Informations du client</legend>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.LabelFor(model => model.IdUtilisateur)
+            @Html.DropDownList("IdUtilisateur", null, "Choisir...", new { @class = "mdl-textfield__input" })
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Commentaires</legend>
+        <div class="mdl-textfield mdl-js-textfield">
+            @Html.TextAreaFor(model => model.commentaire, new { @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.commentaire, new { @class = "mdl-textfield__label" })
+        </div>
+    </fieldset>
+    <input type="submit" , value="Créer" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" />
+    <input type="reset" , value="Reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" />
+}

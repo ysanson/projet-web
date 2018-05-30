@@ -1,0 +1,105 @@
+﻿@model VeterinaryClinicManagment.ViewModels.ConsultViewModel
+@{
+    ViewBag.Title = "Détails";
+}
+
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col">
+        <h2>Détails de la consultation numéro @Model.consult.idObservation</h2>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--2-col">
+        <a href="@Url.Action("Edit", "Consultations", new { id = Model.consult.idObservation })" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="EditConsult">
+            <i class="material-icons">edit</i>
+            <div class="mdl-tooltip" data-mdl-for="EditConsult">
+                Modifier
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--2-col">
+        <h3>Général</h3>
+        <dl class="mdl-list">
+            <dt>
+                Vétérinaire en charge
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.veto.nom) @Html.DisplayFor(model => model.veto.prenom)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.consult.dateObs)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.consult.dateObs)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.consult.description)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.consult.description)
+            </dd>
+        </dl>
+    </div>
+    <div class="mdl-cell mdl-cell--2-col">
+        <h3>Client et animal</h3>
+        <dl class="mdl-list">
+            <dt>
+                Client
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.animal.user.nom) @Html.DisplayFor(model => model.animal.user.prenom)
+            </dd>
+            <dt>
+                Nom de l'animal
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.animal.animal.nom)
+            </dd>
+            <dt>
+                Espèce et race
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.animal.species.esprace)
+            </dd>
+        </dl>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <h3>Résultats</h3>
+        <dl class="mdl-list">
+            <dt>
+                @Html.DisplayNameFor(model => model.consult.examenClinique)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.consult.examenClinique)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.consult.diagnostic)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.consult.diagnostic)
+            </dd>
+        </dl>
+        <h3>Prescriptions</h3>
+        @Ajax.ActionLink("Actualiser la liste", "DetailsForConsult", "PrescConsult", new { id = Model.consult.idObservation }, new AjaxOptions
+   {
+       UpdateTargetId= "tableauPresc",
+       HttpMethod="GET"
+   }, new { @class = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" })
+        <br />
+        <div id="tableauPresc">
+
+            @{
+                Html.RenderAction("DetailsForConsult", "PrescConsult", new { id = Model.consult.idObservation });
+            }
+        </div>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <h3>Ajouter une nouvelle prescription</h3>
+        @{
+            Html.RenderAction("Create", "PrescConsult", new { id = Model.consult.idObservation });
+        }
+    </div>
+</div>

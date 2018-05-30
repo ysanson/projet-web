@@ -1,0 +1,18 @@
+﻿@model VeterinaryClinicManagment.Models.Remarques
+<h5>Nouvelle remarque @ViewBag.PourAnimal, le @Model.dateRemarque</h5>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextAreaFor(model => model.contenuRemarque, new { rows="10", @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.contenuRemarque, new { @class = "mdl-textfield__label" })
+            @Html.ValidationMessageFor(model => model.contenuRemarque, null, new { @class = "mdl-textfield__error" })
+        </div>
+    </fieldset>
+    @Html.HiddenFor(model=>model.IdAnimal)
+    @Html.HiddenFor(model=>model.dateRemarque)
+    <input type="submit" , value="Créer" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" />
+    <input type="reset" , value="Reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" />
+}

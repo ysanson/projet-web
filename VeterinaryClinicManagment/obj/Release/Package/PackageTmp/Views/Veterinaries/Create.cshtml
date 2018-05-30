@@ -1,0 +1,74 @@
+﻿@model VeterinaryClinicManagment.Models.Utilisateur
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Création d'un nouveau vétérinaire</h2>
+@if (ViewData["InUse"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>@ViewData["InUse"]</strong>
+    </div>
+}
+@if (ViewData["DBError"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>@ViewData["DBError"]</strong>
+    </div>
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Informations générales</legend>
+        <em>Cette section est obligatoire.</em><br />
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.nom, new { @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.nom, new { @class = "mdl-textfield__label" })
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.prenom, new { @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.prenom, new { @class = "mdl-textfield__label" })
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Informations de contact</legend>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.tel, new { type = "tel", @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.tel, new { @class = "mdl-textfield__label" })
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Adresse</legend>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.adresse, new { @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.adresse, new { @class = "mdl-textfield__label" })
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.ville, new { @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.ville, new { @class = "mdl-textfield__label" })
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.codePostal, new { type = "text", pattern = "^(([0-8][0-9])|(9[0-5])|(2[ab]))[0-9]{3}$", @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.codePostal, new { @class = "mdl-textfield__label" })
+            <span class="mdl-textfield__error">Veuillez entrer un code postal valide.</span>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Informations de connexion</legend>
+        <em>Cette section est obligatoire.</em><br />
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.mail, new { type = "email", @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.mail, new { @class = "mdl-textfield__label" })
+            <span class="mdl-textfield__error">Ce n'est pas un email valide.</span>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.PasswordFor(model => model.password, new { @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.password, new { @class = "mdl-textfield__label" })
+        </div>
+    </fieldset>
+    <input type="submit" , value="Créer" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" />
+    <input type="reset" , value="Reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" />
+
+}
+

@@ -1,0 +1,98 @@
+﻿@model IEnumerable<VeterinaryClinicManagment.ViewModels.ConsultViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col">
+        <h2>Index des consultations</h2>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--2-col">
+        @if (HttpContext.Current.User.IsInRole("Veterinary"))
+        {
+            <a href="@Url.Action("Create", "Consultations")" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="CreateConsult">
+                <i class="material-icons">add</i>
+                <div class="mdl-tooltip" data-mdl-for="CreateConsult">
+                    Créer
+                </div>
+            </a>
+        }
+    </div>
+</div>
+@if (HttpContext.Current.User.IsInRole("Client"))
+{
+    <h5>Vous ne voyez que les consultations concernant vos animaux.</h5>
+}
+
+
+<div class="table-responsive">
+    <table class="table table-hover mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">
+                    Numéro
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    Date
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    Nom du vétérinaire
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    Nom de l'animal
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    Espèce, race
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    Nom du client
+                </th>
+                @if (HttpContext.Current.User.IsInRole("Veterinary"))
+                {
+                    <th class="mdl-data-table__cell--non-numeric">
+                        Actions
+                    </th>
+                }
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var cons in Model)
+            {
+            <tr id="@cons.consult.idObservation">
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(c => cons.consult.idObservation)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(c => cons.consult.dateObs)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(c => cons.veto.nom)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(c => cons.animal.animal.nom)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(c => cons.animal.species.esprace)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(c => cons.animal.user.nom)
+                </td>
+                @if (HttpContext.Current.User.IsInRole("Veterinary"))
+                {
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.ActionLink("Détails", "Details", new { id = cons.consult.idObservation }, new { @class = "mdl-navigation__link" }) |
+                    @Html.ActionLink("Modifier", "Edit", new { id = cons.consult.idObservation }, new { @class = "mdl-navigation__link" }) |
+                    @if (int.Parse(HttpContext.Current.User.Identity.Name) == cons.veto.IdUtilisateur)
+                    {
+                        <button class="mdl-button mdl-js-button mdl-button--primary delete-link" data-url="@Url.Action("Delete", "Consultations", new {id=cons.consult.idObservation})">Supprimer</button>
+
+                    }
+                </td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,53 @@
+﻿@model VeterinaryClinicManagment.Models.Consultation
+@{
+    ViewBag.Title = "Création";
+}
+
+<h2>Nouvelle consultation</h2>
+<h5>Vétérinaire : @ViewBag.nomVeto, date : @Model.dateObs</h5>
+@if (Model.IdAnimal != 0)
+{
+    <h5>La consultation est pour l'animal @ViewBag.animalClient </h5>
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Informations générales</legend>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextAreaFor(model => model.description, new { rows="5", @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.description, new { @class = "mdl-textfield__label" })
+        </div>
+        @if (Model.IdAnimal == 0)
+        {
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.LabelFor(model => model.IdAnimal)
+            @Html.DropDownList("IdAnimal", null, "Choisir...", new { @class = "mdl-textfield__input" })
+        </div>
+        }
+    </fieldset>
+    <fieldset>
+        <legend>Compte rendu</legend>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextAreaFor(model => model.examenClinique, new { rows = "5", @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.examenClinique, new { @class = "mdl-textfield__label" })
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextAreaFor(model => model.diagnostic, new { rows = "5", @class = "mdl-textfield__input" })
+            @Html.LabelFor(model => model.diagnostic, new { @class = "mdl-textfield__label" })
+        </div>
+    </fieldset>
+    <fieldset>
+        @Html.HiddenFor(model => model.IdUtilisateur)
+        @Html.HiddenFor(model => model.dateObs)
+        @if (Model.IdAnimal != 0)
+        {
+            @Html.HiddenFor(model => model.IdAnimal)
+        }
+    </fieldset>
+    <input type="submit" , value="Créer" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" />
+    <input type="reset" , value="Reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" />
+}
+

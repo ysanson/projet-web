@@ -1,0 +1,65 @@
+﻿@model IEnumerable<VeterinaryClinicManagment.Models.Utilisateur>
+@{
+    ViewBag.Title = "Accueil";
+}
+
+<h2>Accueil</h2>
+
+<h3>Bienvenue sur l'application de gestion de clinique vétérinaire. Ci-dessous se trouvent les noms des vétérinaires de la clinique.</h3>
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col">
+        <table class="table mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">
+                        @Html.DisplayNameFor(model=> model.nom)
+                    </th>
+                    <th class="mdl-data-table__cell--non-numeric">
+                        @Html.DisplayNameFor(model => model.prenom)
+                    </th>
+                    <th class="mdl-data-table__cell--non-numeric">
+                        @Html.DisplayNameFor(model => model.tel)
+                    </th>
+                    <th class="mdl-data-table__cell--non-numeric">
+                        @Html.DisplayNameFor(model => model.mail)
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            @Html.DisplayFor(modelItem => item.nom)
+                        </td>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            @Html.DisplayFor(modelItem => item.prenom)
+                        </td>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            @Html.DisplayFor(modelItem => item.tel)
+                        </td>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            @Html.DisplayFor(modelItem => item.mail)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="mdl-cell mdl-cell--2-col"></div>
+    <div class="mdl-cell mdl-cell--4-col">
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+            <h4>Vous êtes connecté.</h4>
+            @Html.ActionLink("Déconnexion...", "SignOut", "Session", null, new { @class = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" })
+        }
+        else
+        {
+            <h4>Vous n'êtes pas connecté.</h4>
+            @Html.ActionLink("Connexion...", "SignIn", "Session", null, new { @class = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" })
+        }
+    </div>
+
+</div>
+

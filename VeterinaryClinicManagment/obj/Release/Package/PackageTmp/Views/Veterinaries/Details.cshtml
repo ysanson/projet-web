@@ -1,0 +1,81 @@
+﻿@model VeterinaryClinicManagment.Models.Utilisateur
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col">
+        <h2>Details pour le vétérinaire @Model.nom @Model.prenom</h2>
+    </div>
+    <div class="mdl-cell mdl-cell--2-col"></div>
+    <div class="mdl-cell mdl-cell--2-col">
+        <a href="@Url.Action("Edit", "Veterinaries", new { id = Model.IdUtilisateur })" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="EditVet">
+            <i class="material-icons">edit</i>
+            <div class="mdl-tooltip" data-mdl-for="EditVet">
+                Modifier
+            </div>
+        </a>
+    </div>
+</div>
+
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col">
+        <h3>Général</h3>
+        <dl class="mdl-list">
+            <dt>
+                @Html.DisplayNameFor(model => model.nom)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.nom)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.prenom)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.prenom)
+            </dd>
+        </dl>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <h3>Contacts</h3>
+        <dl class="mdl-list">
+            <dt>
+                @Html.DisplayNameFor(model => model.tel)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.tel)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.mail)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.mail)
+            </dd>
+        </dl>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <h3>Adresse</h3>
+        <dl class="mdl-list">
+            <dt>
+                @Html.DisplayNameFor(model => model.adresse)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.adresse)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.codePostal)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.codePostal)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ville)
+            </dt>
+            <dd class="mdl-list__item">
+                @Html.DisplayFor(model => model.ville)
+            </dd>
+        </dl>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<VeterinaryClinicManagment.Models.Medicament>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col">
+        <h2>Liste des médicaments</h2>
+        <h4>Ci-dessous se trouvent tous les médicaments utilisés par la clinique.</h4>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--2-col">
+        <a href="@Url.Action("Create", "Medicaments")" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="CreateClient">
+            <i class="material-icons">add</i>
+            <div class="mdl-tooltip" data-mdl-for="CreateClient">
+                Créer
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayNameFor(model => model.nomMedicament)
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayNameFor(model => model.posologieMax)
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        @Html.DisplayFor(modelR => m.nomMedicament)
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        @Html.DisplayFor(modelR => m.posologieMax)
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        @Html.ActionLink("Éditer", "Edit", new { id = m.idMedicament }, new { @class = "mdl-navigation__link" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

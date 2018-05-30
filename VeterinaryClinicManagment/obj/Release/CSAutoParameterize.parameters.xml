@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="VeterinaryClinicEntities-Web.config Connection String" description="VeterinaryClinicEntities Chaîne de connexion utilisée dans web.config par l’application pour accéder à la base de données." defaultValue="metadata=res://*/Models.VeterinaryClinicEntityModel.csdl|res://*/Models.VeterinaryClinicEntityModel.ssdl|res://*/Models.VeterinaryClinicEntityModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=veterinaryclinicdatabase.database.windows.net;initial catalog=VeterinaryClinic;persist security info=True;user id=ysanson;password=M8UpHd9u!;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Yvan\\documents\\visual\ studio\ 2017\\Projects\\VeterinaryClinicManagment\\VeterinaryClinicManagment\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='VeterinaryClinicEntities']/@connectionString" />
+  </parameter>
+</parameters>
