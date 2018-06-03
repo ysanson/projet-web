@@ -52,7 +52,7 @@
         <tbody>
             @foreach(var animal in Model)
             {
-            <tr>
+            <tr id="@animal.animal.IdAnimal">
                 <td class="mdl-data-table__cell--non-numeric">
                     @Html.DisplayFor(an => animal.animal.nom)
                 </td>
@@ -69,21 +69,23 @@
                     @Html.DisplayFor(an => animal.species.race)
                 </td>
                 <td class="mdl-data-table__cell--non-numeric">
-                    @Html.DisplayFor(an => animal.user.nom)
+                    @Html.DisplayFor(an => animal.user.nom) @Html.DisplayFor(an => animal.user.prenom)
                 </td>
                 <td class="mdl-data-table__cell--non-numeric">
-                    <button id="@animal.animal.IdAnimal" class="mdl-button mdl-js-button mdl-button--icon">
+                    <button id="@animal.animal.IdAnimal-button" class="mdl-button mdl-js-button mdl-button--icon">
                         <i class="material-icons">more_vert</i>
                     </button>
-                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="@animal.animal.IdAnimal">
-                        <li class="mdl-menu__item" onclick="document.location='@Url.Action("EditComments", new {id = animal.animal.IdAnimal})'">Modifier les commentaires</li>
-                        <li class="mdl-menu__item" onclick="document.location='@Url.Action("Details", new {id = animal.animal.IdAnimal})'">Détails</li>
-                        <li class="mdl-menu__item mdl-menu__item--full-bleed-divider" onclick="document.location='@Url.Action("MedicalReport", new {id = animal.animal.IdAnimal})'">Rapport médical</li>
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="@animal.animal.IdAnimal-button">
                         @if (HttpContext.Current.User.IsInRole("Veterinary"))
                         {
                             <li class="mdl-menu__item" onclick="document.location='@Url.Action("Create", "Consultations", new {id = animal.animal.IdAnimal})'">Nouvelle consultation</li>
-                            <li class="mdl-menu__item" onclick="document.location='@Url.Action("Create", "OperationsPassed", new {id = animal.animal.IdAnimal})'">Nouvelle opération</li>
+                            <li class="mdl-menu__item  mdl-menu__item--full-bleed-divider" onclick="document.location='@Url.Action("Create", "OperationsPassed", new {id = animal.animal.IdAnimal})'">Nouvelle opération</li>
+                            <li class="mdl-menu__item  mdl-menu__item--full-bleed-divider delete-link-animal" data-url=@Url.Action("Delete", new {id = animal.animal.IdAnimal})>Supprimer</li>
+
                         }
+                        <li class="mdl-menu__item" onclick="document.location='@Url.Action("Details", new {id = animal.animal.IdAnimal})'">Détails</li>
+                        <li class="mdl-menu__item" onclick="document.location='@Url.Action("MedicalReport", new {id = animal.animal.IdAnimal})'">Rapport médical</li>
+                        <li class="mdl-menu__item" onclick="document.location='@Url.Action("EditComments", new {id = animal.animal.IdAnimal})'">Modifier les commentaires</li>
                     </ul>
                 </td>
             </tr>

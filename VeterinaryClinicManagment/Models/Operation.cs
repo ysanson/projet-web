@@ -24,6 +24,7 @@ namespace VeterinaryClinicManagment.Models
         public int IdOperation { get; set; }
         [Required]
         [Display(Name ="Nom de l'opération")]
+        [StringLength(50, ErrorMessage = "Le nom de l'opération doit être inférieure à 25 caractères.")]
         public string label { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

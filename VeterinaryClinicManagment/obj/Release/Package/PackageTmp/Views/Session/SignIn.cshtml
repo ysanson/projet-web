@@ -18,17 +18,18 @@ else
             {
                 @Html.AntiForgeryToken();
                 <fieldset>
-                    <legend>Authentification @Html.ValidationMessageFor(model => model.user.mail)</legend>
+                    <legend>Authentification @ViewBag.Error</legend>
 
                     <div class="mdl-textfield mdl-js-textfield">
                         @Html.TextBoxFor(model => model.user.mail, new { @class = "mdl-textfield__input" })
                         @Html.LabelFor(model => model.user.mail, new { @class = "mdl-textfield__label" })
+                        @Html.ValidationMessageFor(model => model.user.mail, null, new { @class = "mdl-textfield__error" })
                     </div>
                     <br />
                     <div class="mdl-textfield mdl-js-textfield">
                         @Html.PasswordFor(model => model.user.password, new { @class = "mdl-textfield__input" })
                         @Html.LabelFor(model => model.user.password, new { @class = "mdl-textfield__label" })
-                        @Html.ValidationMessageFor(model => model.user.password)
+                        @Html.ValidationMessageFor(model => model.user.password, null, new { @class = "mdl-textfield__error" })
                     </div>
                     <br />
                 </fieldset>

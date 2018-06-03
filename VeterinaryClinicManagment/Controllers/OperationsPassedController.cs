@@ -53,7 +53,8 @@ namespace VeterinaryClinicManagment.Controllers
                 }
                 Passe op2 = new Passe
                 {
-                    DateOp = DateTime.Now
+                    DateOp = DateTime.Now,
+                    IdUtilisateur = int.Parse(HttpContext.User.Identity.Name)
                 };
                 ViewBag.IdOperation = new SelectList(dal.GetAllOperations(), "IdOperation", "label");
                 ViewBag.IdAnimal = new SelectList(dal.GetAllAnimals(), "IdAnimal", "nom");

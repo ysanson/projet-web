@@ -154,7 +154,7 @@ namespace VeterinaryClinicManagment.Controllers
                 {
                     dal.EditConsult(cons);
                     Response.StatusCode = 205;
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details", new { id = cons.idObservation });
                 }
             }
             return View(cons);

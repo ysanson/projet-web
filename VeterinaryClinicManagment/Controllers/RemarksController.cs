@@ -11,11 +11,6 @@ namespace VeterinaryClinicManagment.Controllers
     [Authorize]
     public class RemarksController : Controller
     {
-        // GET: Remarks
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public ActionResult RemarksForAnimal(int? id)
         {
@@ -38,7 +33,6 @@ namespace VeterinaryClinicManagment.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
-        [ChildActionOnly]
         public ActionResult Create(int? id)
         {
             using (IDal dal=new Dal())
@@ -47,11 +41,11 @@ namespace VeterinaryClinicManagment.Controllers
                 {
                     Remarques rem = new Remarques { IdAnimal = (int)id, dateRemarque = DateTime.Now };
                     ViewBag.PourAnimal = "pour l'animal " + dal.GetAnimalById((int)id).nom + " (" + dal.GetSpecById(dal.GetAnimalById((int)id).idEspece).esprace+")";
-                    return PartialView(rem);
+                    return View(rem);
                 }
                 ViewBag.IdAnimal = new SelectList(dal.GetAllAnimals(), "IdAnimal", "nom");
                 Remarques remarques = new Remarques { dateRemarque = DateTime.Now };
-                return PartialView(remarques);
+                return View(remarques);
             }
         }
 
@@ -68,10 +62,10 @@ namespace VeterinaryClinicManagment.Controllers
                     {
                         Response.StatusCode = 201;
                         Remarques nouveau = new Remarques { IdAnimal = rem.IdAnimal, dateRemarque = DateTime.Now };
-                        return PartialView(nouveau);
+                        return RedirectToAction("Details", "Animals", new { id = rem.IdAnimal });
                     }
                 }
-                return PartialView(rem);
+                return View(rem);
             }
         }
     }

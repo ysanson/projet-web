@@ -1,15 +1,19 @@
 ﻿@model VeterinaryClinicManagment.Models.SuiviPoids
+@{
+    ViewBag.Title = "Nouveau poids";
+}
 
-<h5>Nouveau poids</h5>
-<span>@ViewBag.Success</span>
+<h2>Nouveau poids</h2>
+<h5>Enregistrement le : @Model.dateSuivi</h5>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
     <fieldset>
-        <em>Le poids est en kg, à rentrer sous la forme x,y</em><br />
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            @Html.TextBoxFor(model => model.poids, new { @class = "mdl-textfield__input" })
+            @Html.TextBoxFor(model => model.poids, new { type = "text", pattern = "^[0-9]+(,[0-9][0-9]?)?", @class = "mdl-textfield__input" })
             @Html.LabelFor(model => model.poids, new { @class = "mdl-textfield__label" })
+            <span class="mdl-textfield__error">Doit être écrit de la forme x,yy</span>
         </div>
     </fieldset>
     <fieldset>

@@ -6,3 +6,11 @@ $('.delete-link').on('click', function () {
         })
     }
 });  
+
+$('.delete-link-animal').on('click', function () {
+    if (confirm('Les consultations et chirgurgies seront également supprimées. Confirmer ?')) {
+        $.delete($(this).data().url, function (data) {
+            $('#' + data.id).remove();
+        })
+    }
+});  

@@ -13,6 +13,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    HtmlHelper.UnobtrusiveJavaScriptEnabled=false;
     if (Model.IdAnimal == 0)
     {
     <fieldset>
@@ -20,6 +21,7 @@
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             @Html.LabelFor(model => model.IdAnimal)
             @Html.DropDownList("IdAnimal", null, "Choisir...", new { @class = "mdl-textfield__input" })
+            @Html.ValidationMessageFor(model => model.IdAnimal)
         </div>
     </fieldset>
     }
@@ -28,6 +30,7 @@
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             @Html.LabelFor(model => model.IdOperation)
             @Html.DropDownList("IdOperation", null, "Choisir...", new { @class = "mdl-textfield__input" })
+            @Html.ValidationMessageFor(model => model.IdOperation)
         </div>
     </fieldset>
     <fieldset>
@@ -35,6 +38,7 @@
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             @Html.TextAreaFor(model => model.CompteRenduOP, new { rows = "5", @class = "mdl-textfield__input" })
             @Html.LabelFor(model => model.CompteRenduOP, new { @class = "mdl-textfield__label" })
+            @Html.ValidationMessageFor(model => model.CompteRenduOP, null, new { @class = "mdl-textfield__error" })
         </div>
     </fieldset>
     <fieldset>

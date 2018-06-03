@@ -30,7 +30,6 @@ namespace VeterinaryClinicManagment.Models
         [Required]
         [Display(Name = "Animal consulté")]
         public int IdAnimal { get; set; }
-        [Required]
         [Display(Name = "Vétérinaire en charge")]
         public int IdUtilisateur { get; set; }
         [Display(Name = "Examen clinique")]

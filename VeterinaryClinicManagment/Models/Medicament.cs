@@ -24,8 +24,10 @@ namespace VeterinaryClinicManagment.Models
         public int idMedicament { get; set; }
         [Required]
         [Display(Name = "Nom du médicament")]
+        [StringLength(25, ErrorMessage = "Le nom doit être inférieure à 25 caractères.")]
         public string nomMedicament { get; set; }
         [Display(Name = "Posologie maximum")]
+        [StringLength(25, ErrorMessage = "La posologie max doit être inférieure à 25 caractères.")]
         public string posologieMax { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

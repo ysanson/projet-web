@@ -11,12 +11,16 @@ namespace VeterinaryClinicManagment.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SuiviPoids
     {
         public int idSuivi { get; set; }
+        [Display(Name ="Date du suivi")]
         public Nullable<System.DateTime> dateSuivi { get; set; }
+        [Display(Name ="Poids")]
         public Nullable<double> poids { get; set; }
+        [Display(Name ="Animal associé")]
         public int IdAnimal { get; set; }
     
         public virtual Animal Animal { get; set; }

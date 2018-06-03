@@ -24,9 +24,11 @@ namespace VeterinaryClinicManagment.Models
         public int idEspece { get; set; }
         [Required]
         [Display(Name = "Espèce")]
+        [StringLength(25, ErrorMessage ="L'espèce doit être inférieure à 25 caractères.")]
         public string espece { get; set; }
         [Required]
         [Display(Name = "Race")]
+        [StringLength(25, ErrorMessage = "La race doit être inférieure à 25 caractères.")]
         public string race { get; set; }
         [Display(Name ="Espèce, race")]
         public string esprace { get; set; }

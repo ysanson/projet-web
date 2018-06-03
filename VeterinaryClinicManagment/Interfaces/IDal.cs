@@ -59,5 +59,6 @@ namespace VeterinaryClinicManagment.Models
         Passe GetLastOperationForAnimal(int id);
         Consultation GetLastConsultForAnimal(int id);
         List<Consultation> GetConsultForClient(int id);
+        void DeleteAnimal(Animal animal);
     }
 }

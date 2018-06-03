@@ -54,7 +54,7 @@ namespace VeterinaryClinicManagment.Controllers
                     }
                     return Redirect("/");
                 }
-                ModelState.AddModelError("User.mail", "Email ou mot de passe incorrect(s)");
+                ViewBag.Error = "Adresse mail ou mot de passe incorrect";
             }
             return View(vm);
         }

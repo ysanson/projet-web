@@ -12,8 +12,9 @@
     <fieldset>
         <legend>Commentaires</legend>
         <div class="mdl-textfield mdl-js-textfield">
-            @Html.TextAreaFor(model=>model.commentaire, new { @class="mdl-textfield__input" } )
+            @Html.TextAreaFor(model => model.commentaire, new { @class = "mdl-textfield__input" })
             @Html.LabelFor(model => model.commentaire, new { @class = "mdl-textfield__label" })
+            @Html.ValidationMessageFor(model => model.commentaire, null, new { @class = "mdl-textfield__error" })
         </div>
     </fieldset>
     <input type="submit" , value="Modifier" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" />

@@ -80,7 +80,7 @@
     </div>
     <div class="mdl-cell mdl-cell--6-col">
         <div class="table-responsive">
-            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <table class="table mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                 <thead>
                     <tr>
                         <th class="mdl-data-table__cell--non-numeric">
@@ -124,7 +124,7 @@
                             </td>
                             <td class="mdl-data-table__cell--non-numeric">
                                 @Html.ActionLink("Éditer", "EditComments", "Animals", new { id = animal.animal.IdAnimal }, new { @class = "mdl-navigation__link" }) |
-                                @Html.ActionLink("Consulter", "Details", "Animals", new { id = animal.animal.IdAnimal }, new { @class = "mdl-navigation__link" })
+                                @Html.ActionLink("Détails", "Details", "Animals", new { id = animal.animal.IdAnimal }, new { @class = "mdl-navigation__link" })
                             </td>
                         </tr>
                     }

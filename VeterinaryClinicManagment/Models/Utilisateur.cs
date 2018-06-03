@@ -25,21 +25,28 @@ namespace VeterinaryClinicManagment.Models
     
         public int IdUtilisateur { get; set; }
         [Display(Name = "Mot de passe")]
+        [StringLength(100, ErrorMessage = "Le mot de passe est limité à 100 caractères.")]
         public string password { get; set; }
         [Required]
         [Display(Name = "Nom")]
+        [StringLength(25, ErrorMessage = "Le nom doit être inférieure à 25 caractères.")]
         public string nom { get; set; }
         [Required]
         [Display(Name = "Prénom")]
+        [StringLength(25, ErrorMessage = "Le prénom doit être inférieure à 25 caractères.")]
         public string prenom { get; set; }
         [Display(Name = "Téléphone")]
+        [StringLength(25, ErrorMessage = "Le téléphone doit être inférieure à 25 caractères.")]
         public string tel { get; set; }
         [Required]
         [Display(Name = "Adresse email")]
+        [StringLength(25, ErrorMessage = "Le mail doit être inférieure à 25 caractères.")]
         public string mail { get; set; }
         [Display(Name = "Adresse")]
+        [StringLength(150, ErrorMessage = "L'adresse est limitée à 150 caractères.")]
         public string adresse { get; set; }
         [Display(Name = "Ville")]
+        [StringLength(25, ErrorMessage = "La ville est limitée à 25 caractères.")]
         public string ville { get; set; }
         [Display(Name = "Code postal")]
         public Nullable<int> codePostal { get; set; }

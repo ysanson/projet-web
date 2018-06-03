@@ -25,10 +25,12 @@
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             @Html.TextBoxFor(model => model.nom, new { @class = "mdl-textfield__input" })
             @Html.LabelFor(model => model.nom, new { @class = "mdl-textfield__label" })
+            @Html.ValidationMessageFor(model => model.nom, null, new { @class = "mdl-textfield__error" })
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             @Html.TextBoxFor(model => model.prenom, new { @class = "mdl-textfield__input" })
             @Html.LabelFor(model => model.prenom, new { @class = "mdl-textfield__label" })
+            @Html.ValidationMessageFor(model => model.prenom, null, new { @class = "mdl-textfield__error" })
         </div>
     </fieldset>
     <fieldset>
@@ -36,6 +38,7 @@
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             @Html.TextBoxFor(model => model.tel, new { type = "tel", @class = "mdl-textfield__input" })
             @Html.LabelFor(model => model.tel, new { @class = "mdl-textfield__label" })
+            @Html.ValidationMessageFor(model => model.tel, null, new { @class = "mdl-textfield__error" })
         </div>
     </fieldset>
     <fieldset>
@@ -43,10 +46,12 @@
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             @Html.TextBoxFor(model => model.adresse, new { @class = "mdl-textfield__input" })
             @Html.LabelFor(model => model.adresse, new { @class = "mdl-textfield__label" })
+            @Html.ValidationMessageFor(model => model.adresse, null, new { @class = "mdl-textfield__error" })
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             @Html.TextBoxFor(model => model.ville, new { @class = "mdl-textfield__input" })
             @Html.LabelFor(model => model.ville, new { @class = "mdl-textfield__label" })
+            @Html.ValidationMessageFor(model => model.ville, null, new { @class = "mdl-textfield__error" })
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             @Html.TextBoxFor(model => model.codePostal, new { type = "text", pattern = "^(([0-8][0-9])|(9[0-5])|(2[ab]))[0-9]{3}$", @class = "mdl-textfield__input" })
@@ -63,8 +68,9 @@
             <span class="mdl-textfield__error">Ce n'est pas un email valide.</span>
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            @Html.PasswordFor(model => model.password, new { @class = "mdl-textfield__input" })
+            @Html.PasswordFor(model => model.password, new { @minlength=6, @class = "mdl-textfield__input" })
             @Html.LabelFor(model => model.password, new { @class = "mdl-textfield__label" })
+            <span class="mdl-textfield__error">6 caractères minimum!</span>
         </div>
     </fieldset>
     <input type="submit" , value="Créer" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" />

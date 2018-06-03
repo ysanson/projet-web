@@ -53,7 +53,7 @@ namespace VeterinaryClinicManagment.Controllers
                     if (id != 0)
                     {
                         Response.StatusCode = 201;
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Details", new { id });
                     }
                     else
                     {
@@ -110,8 +110,7 @@ namespace VeterinaryClinicManagment.Controllers
                     else if (id != client.IdUtilisateur)
                     {
                         return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
-                    }
-                        
+                    }                      
                 }
                 else if (id == null)
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -139,7 +138,7 @@ namespace VeterinaryClinicManagment.Controllers
                 {
                     dal.EditUser((int)id, client);
                     Response.StatusCode = 205;
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details", new { id });
                 }
             }
             return View(client);

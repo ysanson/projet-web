@@ -17,13 +17,12 @@ namespace VeterinaryClinicManagment.Controllers
             return View();
         }
 
-        [ChildActionOnly]
         public ActionResult Create(int? id)
         {
             if (id != null)
             {
                 SuiviPoids pds = new SuiviPoids { dateSuivi = DateTime.Now, IdAnimal = (int)id };
-                return PartialView(pds);
+                return View(pds);
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
@@ -39,10 +38,9 @@ namespace VeterinaryClinicManagment.Controllers
                     dal.CreateSuiviPds(pds);
                     Response.StatusCode = 201;
                     SuiviPoids nouv = new SuiviPoids { dateSuivi = DateTime.Now, IdAnimal = pds.IdAnimal };
-                    ViewBag.Success = "Correctement enregistré.";
-                    return PartialView(nouv);
+                    return RedirectToAction("Details", "Animals", new { id = pds.IdAnimal });
                 }
-                return PartialView(pds);        
+                return View(pds);        
             }
         }
 
@@ -53,7 +51,7 @@ namespace VeterinaryClinicManagment.Controllers
                 using(IDal dal = new Dal())
                 {
                     List<SuiviPoids> suiviPoids = dal.GetPdsForAnimal((int)id);
-                    Chart graph = new Chart(width: 400, height: 400)
+                    Chart graph = new Chart(width: 600, height: 400)
                         .AddTitle("Suivi du poids en fonction du temps")
                         .AddSeries(
                             chartType: "Line",

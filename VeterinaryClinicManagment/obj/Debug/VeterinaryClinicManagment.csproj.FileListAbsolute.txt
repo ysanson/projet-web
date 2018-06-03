@@ -1,3 +1,9 @@
+C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\System.IO.Compression.dll
+C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\VBCSCompiler.exe
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\VeterinaryClinicManagment.dll.config
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\VeterinaryClinicManagment.dll
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\VeterinaryClinicManagment.pdb
@@ -8,13 +14,9 @@ C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\Ve
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\csi.exe.config
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\csi.rsp
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\Microsoft.Managed.Core.targets
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\Microsoft.VisualBasic.Core.targets
@@ -23,7 +25,6 @@ C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\Ve
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\System.Console.dll
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\System.Diagnostics.StackTrace.dll
-C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\System.IO.Compression.dll
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\System.IO.FileSystem.dll
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\System.IO.FileSystem.Primitives.dll
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\System.IO.Pipes.AccessControl.dll
@@ -45,7 +46,6 @@ C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\Ve
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\vbc.exe
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\vbc.exe.config
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\vbc.rsp
-C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\VBCSCompiler.exe
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\EntityFramework.dll
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\EntityFramework.SqlServer.dll
@@ -75,6 +75,7 @@ C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\Ve
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\System.Web.WebPages.Razor.xml
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\fr\EntityFramework.resources.dll
+C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\fr\EntityFramework.SqlServer.resources.dll
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\fr\System.Net.Http.Formatting.resources.dll
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\fr\System.Web.Helpers.resources.dll
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\fr\System.Web.Http.resources.dll
@@ -89,4 +90,3 @@ C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\Ve
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\obj\Debug\VeterinaryClinicManagment.csproj.CopyComplete
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\obj\Debug\VeterinaryClinicManagment.dll
 C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\obj\Debug\VeterinaryClinicManagment.pdb
-C:\Users\Yvan\documents\visual studio 2017\Projects\VeterinaryClinicManagment\VeterinaryClinicManagment\bin\fr\EntityFramework.SqlServer.resources.dll

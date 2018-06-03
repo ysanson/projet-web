@@ -9,10 +9,12 @@
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             @Html.LabelFor(model => model.idMedicament)
             @Html.DropDownList("idMedicament", null, "Choisir...", new { @class = "mdl-textfield__input" })
+            @Html.ValidationMessageFor(model => model.idMedicament)
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             @Html.TextBoxFor(model => model.posologie, new { @class = "mdl-textfield__input" })
             @Html.LabelFor(model => model.posologie, new { @class = "mdl-textfield__label" })
+            @Html.ValidationMessageFor(model => model.posologie, null, new { @class = "mdl-textfield__error" })
         </div>
         @Html.HiddenFor(model=>model.idObservation)
     </fieldset>

@@ -189,5 +189,26 @@ namespace VeterinaryClinicManagment.Controllers
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
+
+        [HttpDelete]
+        [Authorize(Roles ="Veterinary")]
+        public ActionResult Delete(int? id)
+        {
+            if (id != null)
+            {
+                using (IDal dal = new Dal())
+                {
+                    Animal animal = dal.GetAnimalById((int)id);
+                    if (animal != null)
+                    {
+                        dal.DeleteAnimal(animal);
+                        Response.StatusCode = 201;
+                        return Json(new { id = (int)id });
+                    }
+                    return HttpNotFound();
+                }
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
     }
 }

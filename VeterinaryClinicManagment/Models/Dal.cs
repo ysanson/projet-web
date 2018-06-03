@@ -421,6 +421,21 @@ namespace VeterinaryClinicManagment.Models
             return consultations;
         }
 
+        public void DeleteAnimal(Animal animal)
+        {
+            List<Consultation> consultsForAnimal = bd.Consultation.ToList();
+            consultsForAnimal.RemoveAll(c => c.IdAnimal != animal.IdAnimal);
+            foreach(Consultation c in consultsForAnimal)
+            {
+                DeleteConsult(c.idObservation);
+            }
+            List<Passe> opPassedForAnimal = bd.Passe.ToList();
+            opPassedForAnimal.RemoveAll(p => p.IdAnimal != animal.IdAnimal);
+            bd.Passe.RemoveRange(opPassedForAnimal);
+            bd.Animal.Remove(animal);
+            bd.SaveChanges();
+        }
+
         public void Dispose()
         {
             bd.Dispose();

@@ -16,6 +16,7 @@ namespace VeterinaryClinicManagment.Models
     public partial class PrescConsultation
     {
         [Display(Name ="Posologie")]
+        [StringLength(25, ErrorMessage = "La posologie doit être inférieure à 25 caractères.")]
         public string posologie { get; set; }
         [Required]
         [Display(Name ="Consultation")]

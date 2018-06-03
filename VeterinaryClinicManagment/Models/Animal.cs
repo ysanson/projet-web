@@ -27,6 +27,7 @@ namespace VeterinaryClinicManagment.Models
         public int IdAnimal { get; set; }
         [Required]
         [Display(Name = "Nom")]
+        [StringLength(25, ErrorMessage ="Le nom doit être inférieur à 25 caractères.")]
         public string nom { get; set; }
         [Required]
         [Display(Name = "Sexe")]

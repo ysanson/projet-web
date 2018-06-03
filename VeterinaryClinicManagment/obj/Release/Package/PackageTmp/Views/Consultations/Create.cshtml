@@ -14,17 +14,20 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
     <fieldset>
         <legend>Informations générales</legend>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            @Html.TextAreaFor(model => model.description, new { rows="5", @class = "mdl-textfield__input" })
+            @Html.TextAreaFor(model => model.description, new { rows = "5", @class = "mdl-textfield__input" })
             @Html.LabelFor(model => model.description, new { @class = "mdl-textfield__label" })
+            @Html.ValidationMessageFor(model => model.description, null, new { @class = "mdl-textfield__error" })
         </div>
         @if (Model.IdAnimal == 0)
         {
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             @Html.LabelFor(model => model.IdAnimal)
             @Html.DropDownList("IdAnimal", null, "Choisir...", new { @class = "mdl-textfield__input" })
+            @Html.ValidationMessageFor(model => model.IdAnimal)
         </div>
         }
     </fieldset>
@@ -33,10 +36,12 @@
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             @Html.TextAreaFor(model => model.examenClinique, new { rows = "5", @class = "mdl-textfield__input" })
             @Html.LabelFor(model => model.examenClinique, new { @class = "mdl-textfield__label" })
+            @Html.ValidationMessageFor(model => model.examenClinique, null, new { @class = "mdl-textfield__error" })
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             @Html.TextAreaFor(model => model.diagnostic, new { rows = "5", @class = "mdl-textfield__input" })
             @Html.LabelFor(model => model.diagnostic, new { @class = "mdl-textfield__label" })
+            @Html.ValidationMessageFor(model => model.diagnostic, null, new { @class = "mdl-textfield__error" })
         </div>
     </fieldset>
     <fieldset>
