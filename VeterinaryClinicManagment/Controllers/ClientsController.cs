@@ -23,8 +23,7 @@ namespace VeterinaryClinicManagment.Controllers
                     List<Utilisateur> clients = dal.ObtainAllClients();
                     return View(clients);
                     
-                }
-                    
+                }   
                 Response.StatusCode = 403;
                 return RedirectToAction("Details", new {id= int.Parse(HttpContext.User.Identity.Name)});
             }

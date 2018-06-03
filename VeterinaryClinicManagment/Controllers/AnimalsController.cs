@@ -79,7 +79,7 @@ namespace VeterinaryClinicManagment.Controllers
                     if (id != 0)
                     {
                         Response.StatusCode = 201;
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Details", new { id });
                     }
                     else
                     {
@@ -162,7 +162,7 @@ namespace VeterinaryClinicManagment.Controllers
                 {
                     Animal animal = dal.GetAnimalById((int)id);
                     dal.EditAnimalComments((int)id, comments);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details", new { id });
                 }
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
